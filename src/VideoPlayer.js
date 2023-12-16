@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './VideoPlayer.css';
 
-const VideoPlayer = ({ videoId, apiKey }) => {
+const VideoPlayer = ({ apiKey }) => {
+  const [videoId, setVideoId] = useState(''); 
   const [videoData, setVideoData] = useState(null);
+
+  const handleInputChange = (event) => {
+    setVideoId(event.target.value);
+  };
 
   useEffect(() => {
     const fetchVideoData = async () => {
@@ -23,7 +28,18 @@ const VideoPlayer = ({ videoId, apiKey }) => {
   }, [videoId, apiKey]);
 
   if (!videoData) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <input
+         className='input'
+          type="text"
+          value={videoId}
+          onChange={handleInputChange}
+          placeholder="Enter YouTube Video ID"
+        />
+        <div>For sample video ID you can use <span className='sampleId'>jfu3xbIqNNU</span> for you can use any videoId from youtube</div>
+      </div>
+    );
   }
 
   const { snippet } = videoData;
@@ -31,6 +47,14 @@ const VideoPlayer = ({ videoId, apiKey }) => {
   const videoEmbedUrl = `https://www.youtube.com/embed/${videoId}`;
 
   return (
+    <div>
+        <input
+        className='input'
+        type="text"
+        value={videoId}
+        onChange={handleInputChange}
+        placeholder="Enter YouTube Video ID"
+      />
     <div className='vidoContainer'>
       <h2>{videoTitle}</h2>
       <div className="video-wrapper">
@@ -43,6 +67,7 @@ const VideoPlayer = ({ videoId, apiKey }) => {
           allowFullScreen
         ></iframe>
       </div>
+    </div>
     </div>
   );
 };
