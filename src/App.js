@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from 'react';
+import VideoPlayer from './VideoPlayer';
+import './App.css'
+const App = () => {
+  const videoId = 'dQw4w9WgXcQ'; 
+  const apiKey = 'AIzaSyC3rVt315dB8PIyYMxOVt8YsMHGcOJblKc'; 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='playbackHeading'>Playback application based on YouTube V3 API</h1>
+      <VideoPlayer videoId={videoId} apiKey={apiKey} />
     </div>
   );
-}
+};
 
 export default App;
